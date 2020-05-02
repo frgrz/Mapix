@@ -1,3 +1,5 @@
+// Find in gradle.properties the Named variables for this script
+
 apply plugin: 'maven'
 apply plugin: 'signing'
 
@@ -19,7 +21,7 @@ def getReleaseRepositoryUrl() {
     // https://bintray.com/api/v1/maven/{NEXUS_USERNAME}/maven/{POM_ARTIFACT_ID}/;publish=1
     return "https://bintray.com/api/v1/maven/" +
             getRepositoryUsername() +
-            "/maven/" +
+            "/Mapix/" +
             (hasProperty('POM_ARTIFACT_URL') ? POM_ARTIFACT_URL : POM_ARTIFACT_ID) +
             "/;publish=1"
 }
