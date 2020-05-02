@@ -19,9 +19,9 @@ object DirectionConverter {
      * @return The list of latitude and longitude that converted from the list of steps.
      * @since 1.0.0
      */
-    fun getDirectionPoint(stepList: List<Step>?): ArrayList<LatLng> {
+    fun getDirectionPoint(stepList: List<Step>): ArrayList<LatLng> {
         val directionPointList = ArrayList<LatLng>()
-        if (stepList != null && stepList.size > 0) {
+        if (stepList.isNotEmpty()) {
             for (step in stepList) {
                 convertStepToPosition(
                     step,
@@ -29,6 +29,7 @@ object DirectionConverter {
                 )
             }
         }
+
         return directionPointList
     }
 
@@ -40,14 +41,12 @@ object DirectionConverter {
         directionPointList: ArrayList<LatLng>
     ) {
         // Get start location
-        directionPointList.add(step.startLocation?.toLatLng())
+        directionPointList.add(step.startLocation.toLatLng())
 
         // Get encoded points location
-        if (step.polyline != null) {
-            val decodedPointList = step.polyline!!.pointList
-            if (decodedPointList != null && decodedPointList.isNotEmpty()) {
-                directionPointList.addAll(decodedPointList)
-            }
+        val decodedPointList = step.polyline.pointList
+        if (decodedPointList.isNotEmpty()) {
+            directionPointList.addAll(decodedPointList)
         }
 
         // Get end location

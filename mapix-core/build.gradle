@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: '../scripts/publish.gradle'
+apply from: '../scripts/dokka.gradle'
+
 dependencies {
     implementation deps.jetbrains.kotlin.jdk7
     implementation deps.square.okhttp.lib
