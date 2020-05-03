@@ -1,6 +1,7 @@
 package com.frgrz.mapix.geocode.request
 
 import com.frgrz.mapix.core.model.AddressTypes
+import com.frgrz.mapix.core.model.Language
 import com.frgrz.mapix.core.model.LocationType
 import com.frgrz.mapix.geocode.api.GeocodeApi
 import com.frgrz.mapix.geocode.response.GeocodeResponse
@@ -9,11 +10,10 @@ import io.reactivex.Single
 class ReversePlaceIdRequest(
     private val connection: GeocodeApi
 ) {
-    private val param: ReverseRequestParam = ReverseRequestParam()
-        .setApiKey(connection.apiKey)
+    private val param: ReverseRequestParam = ReverseRequestParam(connection.apiKey)
 
     fun placeId(placeId: String): ReversePlaceIdRequest {
-        param.setPlaceId(placeId)
+        param.placeId  =placeId
         return this
     }
 
@@ -27,8 +27,8 @@ class ReversePlaceIdRequest(
         return this
     }
 
-    fun setLanguage(language: String):ReversePlaceIdRequest{
-        param.setLanguage(language)
+    fun setLanguage(language: Language):ReversePlaceIdRequest{
+        param.language  =language
         return this
     }
 
@@ -37,8 +37,8 @@ class ReversePlaceIdRequest(
             .reverseGeocodeWithPlaceId(
                 placeId = param.placeId,
                 language = param.language,
-                resultType = param.getUrlFormattedResultTypes(),
-                locationTypes = param.getUrlFormattedLocationTypes(),
+                resultType = param.getResultTypesUrl(),
+                locationTypes = param.getLocationTypesUrl(),
                 key = param.apiKey
             )
     }

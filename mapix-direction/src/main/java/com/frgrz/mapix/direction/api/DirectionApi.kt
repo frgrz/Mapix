@@ -9,12 +9,17 @@ class DirectionApi(
 
     private var service: DirectionService? = null
 
-    fun getService(): DirectionService {
+    fun connect(): DirectionService {
         if (service == null) {
-            service = api.instance.create(DirectionService::class.java)
+            service = api.connect()
+                .create(DirectionService::class.java)
         }
 
         return service!!
     }
 
+    fun disconnect() {
+        api.disconnect()
+        service = null
+    }
 }

@@ -2,40 +2,18 @@ package com.frgrz.mapix.geocode.request
 
 import com.frgrz.mapix.core.model.AddressTypes
 import com.frgrz.mapix.core.model.Coordinate
+import com.frgrz.mapix.core.model.Language
 import com.frgrz.mapix.core.model.LocationType
 import java.lang.StringBuilder
 
-class ReverseRequestParam(apiKey: String = "") {
-    var placeId: String? = null
-        private set
-    var language: String? = null
-        private set
-
-    private var coordinate: Coordinate? = null
-
-    var apiKey: String = apiKey
-        private set
-
-    fun setApiKey(apiKey: String): ReverseRequestParam {
-        this.apiKey = apiKey
-        return this
-    }
-
-    fun setLanguage(language: String) {
-        this.language = language
-    }
-
-    fun setPlaceId(placeId: String) {
-        this.placeId = placeId
-    }
-
-    fun setCoordinate(coordinate: Coordinate) {
-        this.coordinate = coordinate
-    }
-
-    private var locationTypes = arrayListOf<LocationType>()
-
-    private var resultType = arrayListOf<AddressTypes>()
+class ReverseRequestParam(
+   var apiKey: String,
+   var placeId: String? = null,
+   var language: Language? = null,
+   var coordinate: Coordinate?=null,
+   var locationTypes:ArrayList<LocationType> = arrayListOf(),
+    var resultTypes:ArrayList<AddressTypes> = arrayListOf()
+) {
 
     fun addLocationType(locationType: LocationType) {
         if (!locationTypes.contains(locationType)) {
@@ -44,12 +22,12 @@ class ReverseRequestParam(apiKey: String = "") {
     }
 
     fun addResultType(addressTypes: AddressTypes) {
-        if (!resultType.contains(addressTypes)) {
-            this.resultType.add(addressTypes)
+        if (!resultTypes.contains(addressTypes)) {
+            this.resultTypes.add(addressTypes)
         }
     }
 
-    fun getUrlFormattedLocationTypes(): String? {
+    fun getLocationTypesUrl(): String? {
         return if (locationTypes.isEmpty()) {
             null
         } else {
@@ -57,11 +35,11 @@ class ReverseRequestParam(apiKey: String = "") {
         }
     }
 
-    fun getUrlFormattedResultTypes(): String? {
-        return if (resultType.isEmpty()) {
+    fun getResultTypesUrl(): String? {
+        return if (resultTypes.isEmpty()) {
             null
         } else {
-            resultType.joinToString(separator = "|") { it.toString() }
+            resultTypes.joinToString(separator = "|") { it.toString() }
         }
     }
 
