@@ -23,8 +23,4 @@ ext {
     allLicenses = ["MIT"]
 }
 
-// Set up the Android Maven publication.
-apply from: rootProject.file('scripts/maven-install.gradle')
-
-// Publish on Bintray.
 apply from: rootProject.file('scripts/bintray.gradle')
