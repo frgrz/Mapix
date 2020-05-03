@@ -3,6 +3,8 @@ apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
 apply from: rootProject.file('scripts/dokka.gradle')
+apply from: rootProject.file('scripts/maven-publish.gradle')
+apply from: rootProject.file('scripts/maven-install.gradle')
 
 dependencies {
     implementation project(':mapix-core')
@@ -39,5 +41,3 @@ android {
         jvmTarget = "1.8"
     }
 }
-
-apply from: rootProject.file('scripts/release-bintray.gradle')

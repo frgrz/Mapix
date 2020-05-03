@@ -46,6 +46,7 @@ bintray {
         vcsUrl = gitUrl
         licenses = allLicenses
         publish = true
+        userOrg = 'frgrz-org'
         publicDownloadNumbers = true
         version {
             desc = libraryDescription
