@@ -3,6 +3,7 @@ package com.frgrz.mapix.geocode.request
 import com.google.android.gms.maps.model.LatLng
 import com.frgrz.mapix.core.model.AddressTypes
 import com.frgrz.mapix.core.model.Coordinate
+import com.frgrz.mapix.core.model.Language
 import com.frgrz.mapix.core.model.LocationType
 import com.frgrz.mapix.geocode.api.GeocodeApi
 import com.frgrz.mapix.geocode.response.GeocodeResponse
@@ -12,20 +13,20 @@ class ReverseCoordinateRequest(
     private val connection: GeocodeApi
 ) {
 
-    private val param = ReverseRequestParam()
+    private val param = ReverseRequestParam(connection.apiKey)
 
     fun coordinate(coordinate: Coordinate): ReverseCoordinateRequest {
-        param.setCoordinate(coordinate)
+        param.coordinate = coordinate
         return this
     }
 
     fun coordinate(latLng: LatLng): ReverseCoordinateRequest {
-        param.setCoordinate(Coordinate(latLng.latitude, latLng.longitude))
+        param.coordinate = Coordinate(latLng.latitude, latLng.longitude)
         return this
     }
 
     fun coordinate(latitude: Double, longitude: Double): ReverseCoordinateRequest {
-        param.setCoordinate(Coordinate(latitude, longitude))
+        param.coordinate = Coordinate(latitude, longitude)
         return this
     }
 
@@ -39,8 +40,8 @@ class ReverseCoordinateRequest(
         return this
     }
 
-    fun language(language: String): ReverseCoordinateRequest {
-        param.setLanguage(language)
+    fun language(language: Language): ReverseCoordinateRequest {
+        param.language = language
         return this
     }
 
@@ -49,8 +50,8 @@ class ReverseCoordinateRequest(
             .reverseGeocodeWithCoordinates(
                 coordinate = param.getUrlFormattedCoordinates(),
                 language = param.language,
-                resultType = param.getUrlFormattedResultTypes(),
-                locationTypes = param.getUrlFormattedLocationTypes(),
+                resultType = param.getResultTypesUrl(),
+                locationTypes = param.getLocationTypesUrl(),
                 key = connection.apiKey
             )
     }

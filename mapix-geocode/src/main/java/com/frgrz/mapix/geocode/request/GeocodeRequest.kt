@@ -2,32 +2,32 @@ package com.frgrz.mapix.geocode.request
 
 import com.frgrz.mapix.core.model.AddressTypes
 import com.frgrz.mapix.core.model.Bounds
+import com.frgrz.mapix.core.model.Language
 import com.frgrz.mapix.geocode.api.GeocodeApi
 import com.frgrz.mapix.geocode.response.GeocodeResponse
 import io.reactivex.Single
 
 class GeocodeRequest(private val connection: GeocodeApi) {
 
-    private val param = GeocodeRequestParam()
-        .setApiKey(connection.apiKey)
+    private val param = GeocodeRequestParam(connection.apiKey)
 
     fun address(address: String): GeocodeRequest {
-        param.setAddress(address)
+        param.address = address
         return this
     }
 
     fun bounds(bounds: Bounds): GeocodeRequest {
-        param.setBounds(bounds)
+        param.bounds = bounds
         return this
     }
 
     fun region(region: String): GeocodeRequest {
-        param.setRegion(region)
+        param.region = region
         return this
     }
 
-    fun language(language:String): GeocodeRequest {
-        param.setLanguage(language)
+    fun language(language: Language): GeocodeRequest {
+        param.language = language
         return this
     }
 

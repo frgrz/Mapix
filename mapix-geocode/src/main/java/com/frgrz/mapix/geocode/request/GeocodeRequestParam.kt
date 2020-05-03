@@ -1,49 +1,19 @@
 package com.frgrz.mapix.geocode.request
 
 import com.frgrz.mapix.core.model.Bounds
+import com.frgrz.mapix.core.model.Language
 import java.lang.StringBuilder
 import java.util.*
 import kotlin.collections.ArrayList
 
 class GeocodeRequestParam(
-    apiKey: String = "",
-    address: String? = null,
-    private var components: ArrayList<String> = arrayListOf()
+    var apiKey: String,
+    var address: String? = null,
+    var components: ArrayList<String> = arrayListOf(),
+    var bounds: Bounds? = null,
+    var region: String? = null,
+    var language: Language? = null
 ) {
-    var address: String? = address
-        private set
-
-    var apiKey: String = apiKey
-        private set
-
-    private var bounds: Bounds? = null
-
-    var region: String? = null
-        private set
-
-    var language: String? = null
-        private set
-
-    fun setAddress(address: String) {
-        this.address = address
-    }
-
-    fun setApiKey(apiKey: String): GeocodeRequestParam {
-        this.apiKey = apiKey
-        return this
-    }
-
-    fun setBounds(bounds: Bounds) {
-        this.bounds = bounds
-    }
-
-    fun setLanguage(language: String) {
-        this.language = language
-    }
-
-    fun setRegion(region: String) {
-        this.region = region
-    }
 
     fun addComponents(addressType: String, value: String) {
         components.add(addressType.toLowerCase(Locale.getDefault()) + ":" + value)

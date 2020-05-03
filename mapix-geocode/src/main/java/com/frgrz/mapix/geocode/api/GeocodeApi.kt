@@ -11,9 +11,15 @@ class GeocodeApi(
 
     fun getService(): GeocodeApiService {
         if (service == null) {
-            service = api.instance.create(GeocodeApiService::class.java)
+            service = api.connect()
+                .create(GeocodeApiService::class.java)
         }
 
         return service!!
+    }
+
+    fun disconnect() {
+        api.disconnect()
+        service = null
     }
 }
