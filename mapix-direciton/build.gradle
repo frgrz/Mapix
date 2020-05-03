@@ -2,16 +2,16 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: rootProject.file('scripts/dokka.gradle')
+
 dependencies {
+    implementation project(':mapix-core')
     implementation deps.jetbrains.kotlin.jdk7
-    implementation deps.square.okhttp.lib
-    implementation deps.square.okhttp.interceptor
     implementation deps.square.retrofit.lib
     implementation deps.square.retrofit.rx
     implementation deps.square.retrofit.gson
     implementation deps.androidx.annotation
     implementation deps.google.gms.maps
-    implementation deps.google.maps_utils
 }
 
 android {
@@ -39,3 +39,5 @@ android {
         jvmTarget = "1.8"
     }
 }
+
+apply from: rootProject.file('scripts/release-bintray.gradle')

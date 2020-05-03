@@ -1,0 +1,30 @@
+ext {
+    bintrayRepo = 'Mapix'
+    bintrayName = POM_BINTRAY_NAME
+
+    publishedGroupId = 'com.frgrz.mapix'
+    libraryName = 'Mapix'
+    artifact = POM_ARTIFACT_ID
+    packagingType = POM_PACKAGING
+
+    libraryDescription = POM_DESCRIPTION
+
+    siteUrl = 'https://github.com/frgrz/Mapix'
+    gitUrl = 'https://github.com/frgrz/Mapix.git'
+
+    libraryVersion = POM_VERSION
+
+    developerId = 'frgrz-pro'
+    developerName = 'Francois Grzybowski'
+    developerEmail = 'fc.grzybowski.pro@gmail.com'
+
+    licenseName = 'MIT'
+    licenseUrl = 'https://github.com/frgrz/Mapix/blob/master/LICENSE'
+    allLicenses = ["MIT"]
+}
+
+// Set up the Android Maven publication.
+apply from: rootProject.file('scripts/maven-install.gradle')
+
+// Publish on Bintray.
+apply from: rootProject.file('scripts/bintray.gradle')

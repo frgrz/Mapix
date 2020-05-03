@@ -1,4 +1,4 @@
-package com.mapix.app
+package com.frgrz.mapix.app
 
 import org.junit.Test
 
