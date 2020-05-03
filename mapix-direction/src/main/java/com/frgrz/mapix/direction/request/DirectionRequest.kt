@@ -21,7 +21,7 @@ class DirectionRequest(
         )
 
     fun execute(): Single<DirectionResponse> {
-        return connection.getService()
+        return connection.connect()
             .getDirection(
                 param.getCoordinateString(param.origin),
                 param.getCoordinateString(param.destination),

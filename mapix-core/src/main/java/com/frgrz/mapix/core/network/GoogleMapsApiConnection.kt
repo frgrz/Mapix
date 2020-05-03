@@ -6,14 +6,25 @@ import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class GoogleMapsApiConnection(
-    okHttpClient: OkHttpClient
+    private val okHttpClient: OkHttpClient
 ) {
 
-    val instance: Retrofit = Retrofit.Builder()
-        .client(okHttpClient)
-        .baseUrl(GoogleMapsApiUrls.GOOGLE_MAPS_BASE_URL)
-        .addConverterFactory(GsonConverterFactory.create())
-        .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-        .build()
+    private var instance: Retrofit? = null
 
+    fun connect(): Retrofit {
+        if (instance == null) {
+            instance = Retrofit.Builder()
+                .client(okHttpClient)
+                .baseUrl(GoogleMapsApiUrls.GOOGLE_MAPS_BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .build()
+        }
+
+        return instance!!
+    }
+
+    fun disconnect() {
+        instance = null
+    }
 }
