@@ -16,13 +16,18 @@ def versions = [:]
 versions.kotlin = '1.3.72'
 versions.default_gradle_plugin = '3.6.3'
 versions.maven_plugin = '2.0'
+versions.bintray = '1.8.4'
+versions.dokka = '0.9.18'
 
 // Select default gradle plugin or from local overrides
 
 def gradle_plugins = [
-        "gradle": "com.android.tools.build:gradle:$versions.default_gradle_plugin",
-        "kotlin": "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
-        "maven" : "com.github.dcendents:android-maven-gradle-plugin:$versions.maven_plugin"
+        "gradle"       : "com.android.tools.build:gradle:$versions.default_gradle_plugin",
+        "kotlin"       : "org.jetbrains.kotlin:kotlin-gradle-plugin:$versions.kotlin",
+        "maven"        : "com.github.dcendents:android-maven-gradle-plugin:$versions.maven_plugin",
+        "bintray"      : "com.jfrog.bintray.gradle:gradle-bintray-plugin:$versions.bintray",
+        "dokka_android": "org.jetbrains.dokka:dokka-android-gradle-plugin:$versions.dokka",
+        "dokka"        : "org.jetbrains.dokka:dokka-gradle-plugin:$versions.dokka"
 ]
 
 //endregion
