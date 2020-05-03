@@ -1,4 +1,4 @@
-package com.mapix.app
+package com.frgrz.mapix.app
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

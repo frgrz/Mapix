@@ -1,10 +1,10 @@
-package com.mapix.core.utils
+package com.frgrz.mapix.core.utils
 
 import android.content.Context
 import android.util.DisplayMetrics
 import androidx.annotation.ColorInt
 import androidx.annotation.Dimension
-import com.mapix.core.model.Step
+import com.frgrz.mapix.core.model.Step
 import com.google.android.gms.maps.model.*
 import java.util.*
 
@@ -19,9 +19,9 @@ object DirectionConverter {
      * @return The list of latitude and longitude that converted from the list of steps.
      * @since 1.0.0
      */
-    fun getDirectionPoint(stepList: List<Step>): ArrayList<LatLng> {
+    fun getDirectionPoint(stepList: List<Step>?): ArrayList<LatLng> {
         val directionPointList = ArrayList<LatLng>()
-        if (stepList.isNotEmpty()) {
+        if (stepList != null && stepList.size > 0) {
             for (step in stepList) {
                 convertStepToPosition(
                     step,
@@ -29,7 +29,6 @@ object DirectionConverter {
                 )
             }
         }
-
         return directionPointList
     }
 
@@ -41,12 +40,14 @@ object DirectionConverter {
         directionPointList: ArrayList<LatLng>
     ) {
         // Get start location
-        directionPointList.add(step.startLocation.toLatLng())
+        directionPointList.add(step.startLocation?.toLatLng())
 
         // Get encoded points location
-        val decodedPointList = step.polyline.pointList
-        if (decodedPointList.isNotEmpty()) {
-            directionPointList.addAll(decodedPointList)
+        if (step.polyline != null) {
+            val decodedPointList = step.polyline!!.pointList
+            if (decodedPointList != null && decodedPointList.isNotEmpty()) {
+                directionPointList.addAll(decodedPointList)
+            }
         }
 
         // Get end location

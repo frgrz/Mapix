@@ -2,6 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
+apply from: '../scripts/publish.gradle'
+apply from: '../scripts/dokka.gradle'
+
 android {
     compileSdkVersion deps.build_versions.compile_sdk
     buildToolsVersion deps.build_versions.tools
