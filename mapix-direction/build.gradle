@@ -2,8 +2,9 @@ apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-apply from: '../scripts/publish.gradle'
-apply from: '../scripts/dokka.gradle'
+apply from: rootProject.file('scripts/dokka.gradle')
+apply from: rootProject.file('scripts/maven-publish.gradle')
+apply from: rootProject.file('scripts/maven-install.gradle')
 
 dependencies {
     implementation project(':mapix-core')
